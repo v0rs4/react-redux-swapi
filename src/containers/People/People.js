@@ -9,6 +9,24 @@ const People =  React.createClass({
   getPeople: function() {
     return this.props.people || [];
   },
+  renderTableHead: function(){
+    return (
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Birth day</th>
+          <th>Hair color</th>
+          <th>Height</th>
+          <th>Mass</th>
+          <th>Skin color</th>
+        </tr>
+      </thead>
+    );
+  },
+  renderTableBody: function() {
+    return <tbody>{this.renderPeopleRow()}</tbody>;
+  },
   renderPeopleRow: function() {
     return this.getPeople().map((person, i) => {
       return (
@@ -27,7 +45,8 @@ const People =  React.createClass({
   renderPeopleTable: function() {
     return (
       <table>
-        {this.renderPeopleRow()}
+        {this.renderTableHead()}
+        {this.renderTableBody()}
       </table>
     )
   },
