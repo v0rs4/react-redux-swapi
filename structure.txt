@@ -1,0 +1,41 @@
+react-redux-swapi
+├── src
+│   ├── components
+│   ├── containers
+│   │   ├── Films
+│   │   │   └── Films
+│   │   ├── Film
+│   │   │   └── Film
+│   │   ├── People
+│   │   │   └── People
+│   │   ├── Person
+│   │   │   └── Person
+│   │   ├── Planets
+│   │   │   └── Planets
+│   │   ├── Planet
+│   │   │   └── Planet
+│   │   ├── Species
+│   │   │   └── Species
+│   │   ├── SpeciesIndividual
+│   │   │   └── SpeciesIndividual
+│   │   ├── Starships
+│   │   │   └── Starships
+│   │   ├── Starship
+│   │   │   └── Starship
+│   │   ├── Vehicles
+│   │   │   └── Vehicles
+│   │   ├── Vehicle
+│   │   │   └── Vehicle
+│   ├── redux
+│   │   ├── bundles
+│   │   ├── middlewares
+│   │   ├── createStore.dev
+│   │   └── reducer
+│   ├── layouts
+│   │   └── Application
+│   │       └── Application
+│   ├── client.dev.js
+│   ├── server.dev.js
+│   └── routes.js
+├── static
+...
