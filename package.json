@@ -17,7 +17,7 @@
     "babel-register": "^6.3.13",
     "exports-loader": "^0.6.2",
     "express": "^4.13.3",
-    "history": "^1.13.1",
+    "history": "1.13.1",
     "imports-loader": "^0.6.5",
     "lodash": "^3.10.1",
     "react": "^0.14.3",
