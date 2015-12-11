@@ -1,0 +1,28 @@
+{
+  "name": "react-redux-swapi",
+  "description": "React Redux Star Wars API",
+  "main": "bin/server.js",
+  "authors": [
+    "Vladislav Pauk <vladislavpauk@gmail.com> (https://github.com/vladislavpauk)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "redux",
+    "swapi"
+  ],
+  "homepage": "https://github.com/vladislavpauk/react-redux-swapi",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "~3.4.0",
+    "bootstrap": "~3.3.6",
+    "normalize-css": "normalize.css#~3.0.3"
+  }
+}
