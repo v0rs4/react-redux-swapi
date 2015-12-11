@@ -16,7 +16,7 @@ const People =  React.createClass({
       url && this.props.fetchPeople(url);
     }
   },
-  renderTableHead: function(){
+  _renderTableHead: function(){
     return (
       <thead>
         <tr>
@@ -31,10 +31,10 @@ const People =  React.createClass({
       </thead>
     );
   },
-  renderTableBody: function() {
-    return <tbody>{this.renderPeopleRow()}</tbody>;
+  _renderTableBody: function() {
+    return <tbody>{this._renderPeopleRow()}</tbody>;
   },
-  renderPeopleRow: function() {
+  _renderPeopleRow: function() {
     return this.getPeople().map((person, i) => {
       return (
         <tr key={i}>
@@ -49,47 +49,47 @@ const People =  React.createClass({
       );
     });
   },
-  renderPeopleTablePaginationNext: function() {
+  _renderPeopleTablePaginationNext: function() {
     const { nextUrl } = this.props;
     const classes = classnames('btn pull-right', {'btn-primary': !!nextUrl, 'btn-default': !nextUrl} );
     return <a href="" className={classes} onClick={this.changePage(nextUrl)}>Next</a>
   },
-  renderPeopleTablePaginationPrev: function() {
+  _renderPeopleTablePaginationPrev: function() {
     const { prevUrl } = this.props;
     const classes = classnames('btn', {'btn-primary': !!prevUrl, 'btn-default': !prevUrl} );
     return <a href="" className={classes} onClick={this.changePage(prevUrl)}>Previous</a>
   },
-  renderPeopleTablePagination: function(){
+  _renderPeopleTablePagination: function(){
     return (
       <div>
-        {this.renderPeopleTablePaginationNext()}
-        {this.renderPeopleTablePaginationPrev()}
+        {this._renderPeopleTablePaginationNext()}
+        {this._renderPeopleTablePaginationPrev()}
       </div>
     );
   },
-  renderPeopleTable: function() {
+  _renderPeopleTable: function() {
     return (
       <table className="table fadeIn animated">
-        {this.renderTableHead()}
-        {this.renderTableBody()}
+        {this._renderTableHead()}
+        {this._renderTableBody()}
       </table>
     )
   },
-  renderPeopleTableBlock: function() {
+  _renderPeopleTableBlock: function() {
     return (
       <div>
-        {this.renderPeopleTable()}
-        {this.renderPeopleTablePagination()}
+        {this._renderPeopleTable()}
+        {this._renderPeopleTablePagination()}
       </div>
     );
   },
-  renderSpinner: function() {
+  _renderSpinner: function() {
     return <span>Loading...</span>
   },
   render: function() {
     return this.props.isFetching ?
-      this.renderSpinner() :
-      this.renderPeopleTableBlock();
+      this._renderSpinner() :
+      this._renderPeopleTableBlock();
   }
 });
 
