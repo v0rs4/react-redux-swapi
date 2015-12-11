@@ -31,12 +31,12 @@ export default function(state = INITIAL_STATE, action) {
   return state;
 }
 
-export function fetchPeople() {
+export function fetchPeople(url) {
   return {
     apiMiddleware: {
       types: [FETCH_PEOPLE_REQUEST, FETCH_PEOPLE_SUCCESS, FETCH_PEOPLE_FAILURE],
       caller: (swapi, getState) => {
-        return swapi.fetchPeople();
+        return url === undefined ? swapi.fetchPeople() : swapi.get(url);
       }
     }
   }

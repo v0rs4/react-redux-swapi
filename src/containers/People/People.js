@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPeople } from 'redux/bundles/people';
+import { fetchPeople, fetchPeopleGet } from 'redux/bundles/people';
+import classnames from 'classnames';
 
 const People =  React.createClass({
   componentDidMount: function(){
@@ -8,6 +9,12 @@ const People =  React.createClass({
   },
   getPeople: function() {
     return this.props.people || [];
+  },
+  changePage: function(url) {
+    return e => {
+      e.preventDefault();
+      url && this.props.fetchPeople(url);
+    }
   },
   renderTableHead: function(){
     return (
@@ -42,6 +49,24 @@ const People =  React.createClass({
       );
     });
   },
+  renderPeopleTablePaginationNext: function() {
+    const { nextUrl } = this.props;
+    const classes = classnames('btn pull-right', {'btn-primary': !!nextUrl, 'btn-default': !nextUrl} );
+    return <a href="" className={classes} onClick={this.changePage(nextUrl)}>Next</a>
+  },
+  renderPeopleTablePaginationPrev: function() {
+    const { prevUrl } = this.props;
+    const classes = classnames('btn', {'btn-primary': !!prevUrl, 'btn-default': !prevUrl} );
+    return <a href="" className={classes} onClick={this.changePage(prevUrl)}>Previous</a>
+  },
+  renderPeopleTablePagination: function(){
+    return (
+      <div>
+        {this.renderPeopleTablePaginationNext()}
+        {this.renderPeopleTablePaginationPrev()}
+      </div>
+    );
+  },
   renderPeopleTable: function() {
     return (
       <table className="table fadeIn animated">
@@ -50,13 +75,21 @@ const People =  React.createClass({
       </table>
     )
   },
+  renderPeopleTableBlock: function() {
+    return (
+      <div>
+        {this.renderPeopleTable()}
+        {this.renderPeopleTablePagination()}
+      </div>
+    );
+  },
   renderSpinner: function() {
     return <span>Loading...</span>
   },
   render: function() {
     return this.props.isFetching ?
       this.renderSpinner() :
-      this.renderPeopleTable();
+      this.renderPeopleTableBlock();
   }
 });
 
@@ -65,7 +98,9 @@ export default connect(
   state => ({
     isFetching: state.people.isFetching,
     isFetched: state.people.isFetched,
+    nextUrl: state.people.apiResponse.next,
+    prevUrl: state.people.apiResponse.previous,
     people: state.people.apiResponse.results
   }),
-  { fetchPeople }
+  { fetchPeople, fetchPeopleGet }
 )(People);
