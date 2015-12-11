@@ -8,7 +8,6 @@ function fetchResource(resource, id) {
 export function get(url) {
   return fetch(url)
   .then(response => {
-    console.log(response);
     if (response.status >= 200 && response.status < 300) {
       return response;
     } else {
