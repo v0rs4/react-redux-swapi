@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPeople, fetchPeopleGet } from 'redux/bundles/people';
-import classnames from 'classnames';
+// import classnames from 'classnames';
+import PeopleTable from './PeopleTable';
 
 const People =  React.createClass({
   componentDidMount: function(){
@@ -11,85 +12,22 @@ const People =  React.createClass({
     return this.props.people || [];
   },
   changePage: function(url) {
-    return e => {
-      e.preventDefault();
-      url && this.props.fetchPeople(url);
-    }
-  },
-  _renderTableHead: function(){
-    return (
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Birth day</th>
-          <th>Hair color</th>
-          <th>Height</th>
-          <th>Mass</th>
-          <th>Skin color</th>
-        </tr>
-      </thead>
-    );
-  },
-  _renderTableBody: function() {
-    return <tbody>{this._renderPeopleRow()}</tbody>;
-  },
-  _renderPeopleRow: function() {
-    return this.getPeople().map((person, i) => {
-      return (
-        <tr key={i}>
-          <td>{person.name}</td>
-          <td>{person.gender}</td>
-          <td>{person.birth_year}</td>
-          <td>{person.hair_color}</td>
-          <td>{person.height}</td>
-          <td>{person.mass}</td>
-          <td>{person.skin_color}</td>
-        </tr>
-      );
-    });
-  },
-  _renderPeopleTablePaginationNext: function() {
-    const { nextUrl } = this.props;
-    const classes = classnames('btn pull-right', {'btn-primary': !!nextUrl, 'btn-default': !nextUrl} );
-    return <a href="" className={classes} onClick={this.changePage(nextUrl)}>Next</a>
-  },
-  _renderPeopleTablePaginationPrev: function() {
-    const { prevUrl } = this.props;
-    const classes = classnames('btn', {'btn-primary': !!prevUrl, 'btn-default': !prevUrl} );
-    return <a href="" className={classes} onClick={this.changePage(prevUrl)}>Previous</a>
-  },
-  _renderPeopleTablePagination: function(){
-    return (
-      <div>
-        {this._renderPeopleTablePaginationNext()}
-        {this._renderPeopleTablePaginationPrev()}
-      </div>
-    );
-  },
-  _renderPeopleTable: function() {
-    return (
-      <table className="table fadeIn animated">
-        {this._renderTableHead()}
-        {this._renderTableBody()}
-      </table>
-    )
-  },
-  _renderPeopleTableBlock: function() {
-    return (
-      <div>
-        {this._renderPeopleTable()}
-        {this._renderPeopleTablePagination()}
-      </div>
-    );
+    url && this.props.fetchPeople(url);
   },
   _renderSpinner: function() {
     return <span>Loading...</span>
   },
+  _renderTable: function() {
+    return <PeopleTable
+      nextUrl={this.props.nextUrl}
+      prevUrl={this.props.prevUrl}
+      changePage={this.changePage}
+      people={this.getPeople()} />;
+  },
   render: function() {
     return this.props.isFetching ?
       this._renderSpinner() :
-      this._renderPeopleTableBlock();
+      this._renderTable();
   }
 });
 
