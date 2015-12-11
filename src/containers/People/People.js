@@ -44,7 +44,7 @@ const People =  React.createClass({
   },
   renderPeopleTable: function() {
     return (
-      <table>
+      <table className="table fadeIn animated">
         {this.renderTableHead()}
         {this.renderTableBody()}
       </table>

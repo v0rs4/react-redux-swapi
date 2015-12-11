@@ -11,6 +11,7 @@ const Films = React.createClass({
       <thead>
         <tr>
           <th>Title</th>
+          <th>Director</th>
           <th>Episode #</th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@ const Films = React.createClass({
       return (
         <tr key={i}>
           <td>{film.title}</td>
+          <td>{film.director}</td>
           <td>{film.episode_id}</td>
         </tr>
       );
@@ -36,7 +38,7 @@ const Films = React.createClass({
   },
   renderFilmsTable: function(){
     return (
-      <table>
+      <table className="table fadeIn animated">
         {this.renderTableHeader()}
         {this.renderTableBody()}
       </table>
@@ -58,4 +60,4 @@ export default connect(
     films: state.films.apiResponse.results
   }),
   { fetchFilms }
-)(Films)
+)(Films);
