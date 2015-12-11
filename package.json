@@ -1,15 +1,15 @@
 {
-  "name": "React Redux Star Wars API",
+  "name": "react-redux-swapi",
   "version": "0.0.1",
   "description": "React Redux Star Wars API",
   "main": "bin/server.js",
   "scripts": {
-    "start": "./bin/server.js",
+    "start": "node ./bin/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/vladislavpauk/react-redux-swapi.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vladislavpauk/react-redux-swapi.git"
   },
   "keywords": [],
   "author": "Vladislav Pauk <vladislavpauk@gmail.com> (https://github.com/vladislavpauk)",
