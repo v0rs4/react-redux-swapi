@@ -18,7 +18,7 @@ const finalCreateStore = compose(
   applyMiddleware(logger)
 )(createStore);
 
-export default function() {
+export default function () {
   const store = finalCreateStore(reducer);
   return store;
 }

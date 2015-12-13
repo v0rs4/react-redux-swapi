@@ -1,30 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPeople, fetchPeopleGet } from 'redux/bundles/people';
-// import classnames from 'classnames';
+import { fetchPeople } from 'redux/bundles/people';
 import PeopleTable from './PeopleTable';
 
-const People =  React.createClass({
-  componentDidMount: function(){
+const People = React.createClass({
+  propTypes: {
+    fetchPeople: React.PropTypes.func,
+    isFetching: React.PropTypes.bool,
+    isFetched: React.PropTypes.bool,
+    nextUrl: React.PropTypes.string,
+    prevUrl: React.PropTypes.string,
+    people: React.PropTypes.array
+  },
+  componentDidMount: () => {
     this.props.fetchPeople();
   },
-  getPeople: function() {
+  getPeople: () => {
     return this.props.people || [];
   },
-  changePage: function(url) {
-    url && this.props.fetchPeople(url);
+  changePage: (url) => {
+    if (url !== undefined) this.props.fetchPeople(url);
   },
-  _renderSpinner: function() {
-    return <span>Loading...</span>
+  _renderSpinner: () => {
+    return <span>Loading...</span>;
   },
-  _renderTable: function() {
-    return <PeopleTable
-      nextUrl={this.props.nextUrl}
-      prevUrl={this.props.prevUrl}
-      changePage={this.changePage}
-      people={this.getPeople()} />;
+  _renderTable: () => {
+    return (
+      <PeopleTable
+        nextUrl={this.props.nextUrl}
+        prevUrl={this.props.prevUrl}
+        changePage={this.changePage}
+        people={this.getPeople()} />
+    );
   },
-  render: function() {
+  render: () => {
     return this.props.isFetching ?
       this._renderSpinner() :
       this._renderTable();
@@ -40,5 +49,5 @@ export default connect(
     prevUrl: state.people.apiResponse.previous,
     people: state.people.apiResponse.results
   }),
-  { fetchPeople, fetchPeopleGet }
+  { fetchPeople }
 )(People);

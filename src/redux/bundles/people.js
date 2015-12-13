@@ -10,8 +10,8 @@ const INITIAL_STATE = {
   isFetched: false
 };
 
-export default function(state = INITIAL_STATE, action) {
-  switch(action.type) {
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
     case FETCH_PEOPLE_REQUEST:
       return merge({}, state, {
         isFetching: true
@@ -27,17 +27,18 @@ export default function(state = INITIAL_STATE, action) {
         isFetching: false,
         isFetched: false
       });
+    default:
+      return state;
   }
-  return state;
-}
+};
 
 export function fetchPeople(url) {
   return {
     apiMiddleware: {
       types: [FETCH_PEOPLE_REQUEST, FETCH_PEOPLE_SUCCESS, FETCH_PEOPLE_FAILURE],
-      caller: (swapi, getState) => {
+      caller: swapi => {
         return url === undefined ? swapi.fetchPeople() : swapi.get(url);
       }
     }
-  }
+  };
 }

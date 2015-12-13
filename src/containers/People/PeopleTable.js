@@ -2,13 +2,19 @@ import React from 'react';
 import classnames from 'classnames';
 
 export default React.createClass({
-  _changePage: function(url) {
+  propTypes: {
+    changePage: React.PropTypes.func,
+    people: React.PropTypes.array,
+    nextUrl: React.PropTypes.string,
+    prevUrl: React.PropTypes.string
+  },
+  _changePage: url => {
     return e => {
       e.preventDefault();
       this.props.changePage(url);
-    }
+    };
   },
-  _renderTableHead: function(){
+  _renderTableHead: () => {
     return (
       <thead>
         <tr>
@@ -23,10 +29,10 @@ export default React.createClass({
       </thead>
     );
   },
-  _renderTableBody: function() {
+  _renderTableBody: () => {
     return <tbody>{this._renderPeopleRows()}</tbody>;
   },
-  _renderPeopleRows: function() {
+  _renderPeopleRows: () => {
     return this.props.people.map((person, i) => {
       return (
         <tr key={i}>
@@ -41,17 +47,17 @@ export default React.createClass({
       );
     });
   },
-  _renderTablePaginationNext: function() {
+  _renderTablePaginationNext: () => {
     const { nextUrl } = this.props;
-    const classes = classnames('btn pull-right', {'btn-primary': !!nextUrl, 'btn-default': !nextUrl} );
-    return <a href="" className={classes} onClick={this._changePage(nextUrl)}>Next</a>
+    const classes = classnames('btn pull-right', { 'btn-primary': !!nextUrl, 'btn-default': !nextUrl });
+    return <a href="" className={classes} onClick={this._changePage(nextUrl)}>Next</a>;
   },
-  _renderTablePaginationPrev: function() {
+  _renderTablePaginationPrev: () => {
     const { prevUrl } = this.props;
-    const classes = classnames('btn', {'btn-primary': !!prevUrl, 'btn-default': !prevUrl} );
-    return <a href="" className={classes} onClick={this._changePage(prevUrl)}>Previous</a>
+    const classes = classnames('btn', { 'btn-primary': !!prevUrl, 'btn-default': !prevUrl });
+    return <a href="" className={classes} onClick={this._changePage(prevUrl)}>Previous</a>;
   },
-  _renderTablePagination: function(){
+  _renderTablePagination: () => {
     return (
       <div>
         {this._renderTablePaginationNext()}
@@ -59,7 +65,7 @@ export default React.createClass({
       </div>
     );
   },
-  _renderTable: function() {
+  _renderTable: () => {
     return (
       <table className="table fadeIn animated">
         {this._renderTableHead()}
@@ -67,7 +73,7 @@ export default React.createClass({
       </table>
     );
   },
-  render: function() {
+  render: () => {
     return (
       <div>
         {this._renderTable()}

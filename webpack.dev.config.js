@@ -8,6 +8,13 @@ module.exports = {
     publicPath: '/'
   },
   module: {
+    preLoaders: [
+       {
+         test: /\.js$/,
+         loader: 'eslint-loader',
+         exclude: /node_modules/
+       }
+     ],
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'react-hot!babel' },
       { test: /\.css$/, loader: 'style!css' },

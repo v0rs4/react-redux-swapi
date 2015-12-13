@@ -5,7 +5,7 @@ import People from 'containers/People/People';
 import Films from 'containers/Films/Films';
 
 export default (
-  <Route path='/' component={ApplicationLayout}>
+  <Route path="/" component={ApplicationLayout}>
     <IndexRoute name="people" component={People}/>
     <Route name="films" path="films" component={Films} />
   </Route>

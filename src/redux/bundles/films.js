@@ -10,8 +10,8 @@ const INITIAL_STATE = {
   apiResponse: {}
 };
 
-export default function(state = INITIAL_STATE, action) {
-  switch(action.type) {
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
     case FETCH_REQUEST:
       return merge({}, state, {
         isFetching: true
@@ -27,17 +27,18 @@ export default function(state = INITIAL_STATE, action) {
         isFetching: false,
         isFetched: false
       });
+    default:
+      return state;
   }
-  return state;
-}
+};
 
 export function fetchFilms() {
   return {
     apiMiddleware: {
-     types: [FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE],
-     caller: function(swapi) {
-      return swapi.fetchFilms();
-     }
+      types: [FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE],
+      caller: (swapi) => {
+        return swapi.fetchFilms();
+      }
     }
-  }
+  };
 }

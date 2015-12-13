@@ -1,15 +1,15 @@
-function createNextWithCallbacks(next, { dispatch, getState }, { after, before }){
-  return function(action) {
-    (typeof before  === 'function') && before(action, dispatch, getState);
+function createNextWithCallbacks(next, { dispatch, getState }, { after, before }) {
+  return action => {
+    if (typeof before === 'function') before(action, dispatch, getState);
     next(action);
-    (typeof after  === 'function') && after(action, dispatch, getState);
+    if (typeof after === 'function') after(action, dispatch, getState);
   };
 }
 
 export default api => store => next => action => {
   // check if the action is related to api
   const apiMiddleware = action.apiMiddleware;
-  if (typeof apiMiddleware == 'undefined') {
+  if (typeof apiMiddleware === undefined) {
     return next(action);
   }
   // Type checking
@@ -24,7 +24,7 @@ export default api => store => next => action => {
     throw new Error('Expected caller to be function.');
   }
   // Actual middleware stuff
-  const [ requestType, successType, failureType ] = types;
+  const [requestType, successType, failureType] = types;
 
   function actionWith(data) {
     const finalAction = Object.assign({}, action, data);

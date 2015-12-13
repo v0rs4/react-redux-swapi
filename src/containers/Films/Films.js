@@ -1,12 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchFilms } from 'redux/bundles/films'
+import { fetchFilms } from 'redux/bundles/films';
 
 const Films = React.createClass({
-  componentDidMount: function(){
+  propTypes: {
+    fetchFilms: React.PropTypes.func,
+    isFetching: React.PropTypes.bool,
+    films: React.PropTypes.array
+  },
+  componentDidMount: () => {
     this.props.fetchFilms();
   },
-  renderTableHeader: function(){
+  getFilms: () => {
+    return this.props.films || [];
+  },
+  renderTableHeader: () => {
     return (
       <thead>
         <tr>
@@ -17,15 +25,12 @@ const Films = React.createClass({
       </thead>
     );
   },
-  renderTableBody: function(){
+  renderTableBody: () => {
     return (
       <tbody>{this.renderTableBodyRows()}</tbody>
     );
   },
-  getFilms: function(){
-    return this.props.films || [];
-  },
-  renderTableBodyRows: function() {
+  renderTableBodyRows: () => {
     return this.getFilms().map((film, i) => {
       return (
         <tr key={i}>
@@ -34,9 +39,9 @@ const Films = React.createClass({
           <td>{film.episode_id}</td>
         </tr>
       );
-    })
+    });
   },
-  renderFilmsTable: function(){
+  renderFilmsTable: () => {
     return (
       <table className="table fadeIn animated">
         {this.renderTableHeader()}
@@ -44,10 +49,10 @@ const Films = React.createClass({
       </table>
     );
   },
-  renderSpinner: function(){
+  renderSpinner: () => {
     return <div>Loading...</div>;
   },
-  render: function() {
+  render: () => {
     return this.props.isFetching ?
       this.renderSpinner() :
       this.renderFilmsTable();
