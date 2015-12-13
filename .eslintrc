@@ -1,5 +1,7 @@
 {
+  // https://www.npmjs.com/package/eslint-config-airbnb
   "extends": 'airbnb',
+  // custom rules
   "rules": {
       "comma-dangle": 0
     }
