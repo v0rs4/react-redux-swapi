@@ -1,20 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export default React.createClass({
-  propTypes: {
-    changePage: React.PropTypes.func,
-    people: React.PropTypes.array,
-    nextUrl: React.PropTypes.string,
-    prevUrl: React.PropTypes.string
-  },
-  _changePage: url => {
+export default class PeopleTable extends React.Component {
+  _changePage(url) {
     return e => {
       e.preventDefault();
       this.props.changePage(url);
     };
-  },
-  _renderTableHead: () => {
+  }
+
+  _renderTableHead() {
     return (
       <thead>
         <tr>
@@ -28,11 +23,13 @@ export default React.createClass({
         </tr>
       </thead>
     );
-  },
-  _renderTableBody: () => {
+  }
+
+  _renderTableBody() {
     return <tbody>{this._renderPeopleRows()}</tbody>;
-  },
-  _renderPeopleRows: () => {
+  }
+
+  _renderPeopleRows() {
     return this.props.people.map((person, i) => {
       return (
         <tr key={i}>
@@ -46,34 +43,39 @@ export default React.createClass({
         </tr>
       );
     });
-  },
-  _renderTablePaginationNext: () => {
+  }
+
+  _renderTablePaginationNext() {
     const { nextUrl } = this.props;
     const classes = classnames('btn pull-right', { 'btn-primary': !!nextUrl, 'btn-default': !nextUrl });
     return <a href="" className={classes} onClick={this._changePage(nextUrl)}>Next</a>;
-  },
-  _renderTablePaginationPrev: () => {
+  }
+
+  _renderTablePaginationPrev() {
     const { prevUrl } = this.props;
     const classes = classnames('btn', { 'btn-primary': !!prevUrl, 'btn-default': !prevUrl });
     return <a href="" className={classes} onClick={this._changePage(prevUrl)}>Previous</a>;
-  },
-  _renderTablePagination: () => {
+  }
+
+  _renderTablePagination() {
     return (
       <div>
         {this._renderTablePaginationNext()}
         {this._renderTablePaginationPrev()}
       </div>
     );
-  },
-  _renderTable: () => {
+  }
+
+  _renderTable() {
     return (
       <table className="table fadeIn animated">
         {this._renderTableHead()}
         {this._renderTableBody()}
       </table>
     );
-  },
-  render: () => {
+  }
+
+  render() {
     return (
       <div>
         {this._renderTable()}
@@ -81,4 +83,11 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+PeopleTable.propTypes = {
+  changePage: React.PropTypes.func,
+  people: React.PropTypes.array,
+  nextUrl: React.PropTypes.string,
+  prevUrl: React.PropTypes.string
+};

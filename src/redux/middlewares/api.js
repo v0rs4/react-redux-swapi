@@ -8,8 +8,8 @@ function createNextWithCallbacks(next, { dispatch, getState }, { after, before }
 
 export default api => store => next => action => {
   // check if the action is related to api
-  const apiMiddleware = action.apiMiddleware;
-  if (typeof apiMiddleware === undefined) {
+  const { apiMiddleware } = action;
+  if (typeof apiMiddleware === 'undefined') {
     return next(action);
   }
   // Type checking

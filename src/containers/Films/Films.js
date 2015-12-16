@@ -2,19 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFilms } from 'redux/bundles/films';
 
-const Films = React.createClass({
-  propTypes: {
-    fetchFilms: React.PropTypes.func,
-    isFetching: React.PropTypes.bool,
-    films: React.PropTypes.array
-  },
-  componentDidMount: () => {
+const mapStateToProps = (state) => ({
+  isFetching: state.films.isFetching,
+  films: state.films.apiResponse.results
+});
+
+const actions = { fetchFilms };
+
+export default class Films extends React.Component {
+  componentDidMount() {
     this.props.fetchFilms();
-  },
-  getFilms: () => {
+  }
+
+  getFilms() {
     return this.props.films || [];
-  },
-  renderTableHeader: () => {
+  }
+
+  renderTableHeader() {
     return (
       <thead>
         <tr>
@@ -24,13 +28,15 @@ const Films = React.createClass({
         </tr>
       </thead>
     );
-  },
-  renderTableBody: () => {
+  }
+
+  renderTableBody() {
     return (
       <tbody>{this.renderTableBodyRows()}</tbody>
     );
-  },
-  renderTableBodyRows: () => {
+  }
+
+  renderTableBodyRows() {
     return this.getFilms().map((film, i) => {
       return (
         <tr key={i}>
@@ -40,29 +46,32 @@ const Films = React.createClass({
         </tr>
       );
     });
-  },
-  renderFilmsTable: () => {
+  }
+
+  renderFilmsTable() {
     return (
       <table className="table fadeIn animated">
         {this.renderTableHeader()}
         {this.renderTableBody()}
       </table>
     );
-  },
-  renderSpinner: () => {
-    return <div>Loading...</div>;
-  },
-  render: () => {
-    return this.props.isFetching ?
-      this.renderSpinner() :
-      this.renderFilmsTable();
   }
-});
 
-export default connect(
-  state => ({
-    isFetching: state.films.isFetching,
-    films: state.films.apiResponse.results
-  }),
-  { fetchFilms }
-)(Films);
+  renderSpinner() {
+    return <div>Loading...</div>;
+  }
+
+  render() {
+    return this.props.isFetching
+      ? this.renderSpinner()
+      : this.renderFilmsTable();
+  }
+}
+
+Films.propTypes = {
+  fetchFilms: React.PropTypes.func,
+  isFetching: React.PropTypes.bool,
+  films: React.PropTypes.array
+};
+
+export default connect(mapStateToProps, actions)(Films);

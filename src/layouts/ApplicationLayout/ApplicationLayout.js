@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default React.createClass({
-  displayName: 'ApplicationLayout',
-  propTypes: {
-    children: React.PropTypes.array
-  },
-  render: () => {
+export default class ApplicationLayout extends React.Component {
+  render() {
     return (
       <div className="container fadeIn animated">
         <h1>Star Wars API & React Redux</h1>
@@ -20,4 +16,9 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+ApplicationLayout.displayName = 'ApplicationLayout';
+ApplicationLayout.propTypes = {
+  children: React.PropTypes.array
+};
