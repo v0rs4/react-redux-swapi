@@ -7,6 +7,7 @@ import routes from '../routes';
 import reducer from './reducer';
 import createLogger from 'redux-logger';
 import * as swapi from 'helpers/swapi';
+import DevTools from 'containers/DevTools';
 
 const logger = createLogger({
   collapsed: true
@@ -15,7 +16,8 @@ const logger = createLogger({
 const finalCreateStore = compose(
   applyMiddleware(thunkMiddleware, apiMiddleware(swapi)),
   reduxReactRouter({ routes, createHistory }),
-  applyMiddleware(logger)
+  applyMiddleware(logger),
+  DevTools.instrument() // dev thing
 )(createStore);
 
 export default function () {
