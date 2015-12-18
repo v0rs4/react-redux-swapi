@@ -1,4 +1,5 @@
-import merge from 'lodash/object/merge';
+// import merge from 'lodash/object/merge';
+import { createReducer } from 'helpers';
 
 const FETCH_REQUEST = 'react-redux-swapi/films/fetchRequest';
 const FETCH_SUCCESS = 'react-redux-swapi/films/fetchSuccess';
@@ -10,27 +11,21 @@ const INITIAL_STATE = {
   apiResponse: {}
 };
 
-export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case FETCH_REQUEST:
-      return merge({}, state, {
-        isFetching: true
-      });
-    case FETCH_SUCCESS:
-      return merge({}, state, {
-        isFetching: false,
-        isFetched: true,
-        apiResponse: action.payload
-      });
-    case FETCH_FAILURE:
-      return merge({}, state, {
-        isFetching: false,
-        isFetched: false
-      });
-    default:
-      return state;
-  }
-};
+export default createReducer(INITIAL_STATE, {
+  [FETCH_REQUEST]: () => ({
+    isFetching: true
+  }),
+  [FETCH_SUCCESS]: (state, { payload }) => ({
+    isFetching: false,
+    isFetched: true,
+    apiResponse: payload
+  }),
+  [FETCH_FAILURE]: () => ({
+    isFetching: false,
+    isFetched: false,
+    apiResponse: {}
+  })
+});
 
 export function fetchFilms() {
   return {
