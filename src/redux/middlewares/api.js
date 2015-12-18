@@ -40,6 +40,15 @@ export default api => store => next => action => {
   }));
 
   return caller(api, getState)
-  .then(json => nextWithCallbacks(actionWith({ payload: json, type: successType })))
-  .catch(error => nextWithCallbacks(actionWith({ type: failureType, error: error.message || 'An unknown error occured' })));
+  .then(json => nextWithCallbacks(
+    actionWith({ payload: json, type: successType })
+  ))
+  .catch(error => nextWithCallbacks(
+    actionWith(
+      {
+        type: failureType,
+        error: error.message || 'An unknown error occured'
+      }
+    )
+  ));
 };

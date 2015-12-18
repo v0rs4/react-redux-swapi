@@ -1,8 +1,14 @@
 {
+  "parser": "babel-eslint",
   // https://www.npmjs.com/package/eslint-config-airbnb
-  "extends": 'airbnb',
+  "extends": "airbnb",
   // custom rules
   "rules": {
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "max-len": [2, 100, 2, {
+      "ignoreComments": true,
+      "ignoreUrls": true,
+      "ignorePattern": "^const [A-Z\\_]+\\s?="
+    }]
   }
 }

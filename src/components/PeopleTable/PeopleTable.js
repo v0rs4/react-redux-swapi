@@ -47,14 +47,34 @@ export default class PeopleTable extends React.Component {
 
   _renderTablePaginationNext() {
     const { nextUrl } = this.props;
-    const classes = classnames('btn pull-right', { 'btn-primary': !!nextUrl, 'btn-default': !nextUrl });
-    return <a href="" className={classes} onClick={this._changePage(nextUrl)}>Next</a>;
+    const classes = classnames(
+      'btn pull-right',
+      {
+        'btn-primary': !!nextUrl,
+        'btn-default': !nextUrl
+      }
+    );
+    return (
+      <a href="" className={classes} onClick={this._changePage(nextUrl)}>
+        Next
+      </a>
+    );
   }
 
   _renderTablePaginationPrev() {
     const { prevUrl } = this.props;
-    const classes = classnames('btn', { 'btn-primary': !!prevUrl, 'btn-default': !prevUrl });
-    return <a href="" className={classes} onClick={this._changePage(prevUrl)}>Previous</a>;
+    const classes = classnames(
+      'btn',
+      {
+        'btn-primary': !!prevUrl,
+        'btn-default': !prevUrl
+      }
+    );
+    return (
+      <a href="" className={classes} onClick={this._changePage(prevUrl)}>
+        Previous
+      </a>
+    );
   }
 
   _renderTablePagination() {
