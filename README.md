@@ -13,3 +13,7 @@ A simple react/redux app that uses swapi as a source of data to represent that w
 - `$ npm install`
 - `$ ./node_modules/bower/bin/bower install`
 - `$ npm run start`
+
+# TODO
+
+- Remove api redux middleware, use swapi with redux thunk right inside the redux\bundles
