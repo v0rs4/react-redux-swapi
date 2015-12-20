@@ -11,13 +11,13 @@
 }
 
 .left-sidebar-container {
-  width: 250px;
-  // margin-left: -250px;
+  min-width: 250px;
+  transition: all 1s;
   background: darken(#fff, 5%);
-  border-right: 1px solid darken(#fff, 7%);
+  border-right: 1px solid darken(#fff, 15%);
 }
 
 .content-container {
-
+  width: 100%;
 }
 
