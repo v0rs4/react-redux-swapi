@@ -22,6 +22,6 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'index.dev.html'));
 });
 
-app.listen(3001, 'localhost', () => {
+app.listen(3001, '0.0.0.0', () => {
   console.info('Running on 3001');
 });
