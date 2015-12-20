@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/vladislavpauk/react-redux-swapi",
   "dependencies": {
+    "autoprefixer-loader": "^3.1.0",
     "babel-core": "6.3.17",
     "babel-loader": "6.2.0",
     "babel-plugin-syntax-export-extensions": "^6.3.13",
@@ -36,6 +37,7 @@
     "history": "1.13.1",
     "imports-loader": "0.6.5",
     "lodash": "3.10.1",
+    "node-sass": "^3.4.2",
     "react": "0.14.3",
     "react-dom": "0.14.3",
     "react-redux": "4.0.0",
@@ -43,6 +45,7 @@
     "redux": "3.0.4",
     "redux-router": "1.0.0-beta5",
     "redux-thunk": "1.0.0",
+    "sass-loader": "^3.1.2",
     "style-loader": "0.13.0",
     "url-loader": "0.5.7",
     "webpack": "1.12.9",
