@@ -6,8 +6,8 @@ import { ReduxRouter } from 'redux-router';
 import DevTools from 'containers/DevTools';
 
 require('normalize-css/normalize.css');
-require('bootstrap/dist/css/bootstrap.min.css');
 require('animate.css/animate.min.css');
+require('styles/core.scss');
 
 const store = createStore();
 
