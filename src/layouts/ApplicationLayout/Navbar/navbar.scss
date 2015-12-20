@@ -1,0 +1,56 @@
+// @import "compass/css3";
+$bg: #f0f0f0;
+
+.navbar {
+  border-bottom: 1px solid darken(#fff, 10%);
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: $bg;
+  display: flex;
+  align-items: stetch;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.navigation a {
+  text-decoration: none;
+  background: darken($bg, 5%);
+  display: block;
+  padding: 1em;
+  color: black;
+}
+
+.navigation a:hover {
+  background: darken($bg, 7%);
+  color: inherit;
+}
+
+@media all and (max-width: 800px) {
+  .navigation {
+    flex-flow: column wrap;
+    padding: 0;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .navigation {
+    flex-flow: column wrap;
+    padding: 0;
+  }
+
+  .navigation a {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+
+  .navigation li:last-of-type a {
+    border-bottom: none;
+  }
+}

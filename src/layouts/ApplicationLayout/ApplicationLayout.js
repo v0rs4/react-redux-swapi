@@ -1,18 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router';
+import Sidebar from './Sidebar';
+import ContentArea from './ContentArea';
+import './application-layout.scss';
 
 export default class ApplicationLayout extends React.Component {
+  getStyles() {
+    if (typeof window === 'object') {
+      return { minHeight: window.innerHeight };
+    }
+    return {};
+  }
+
   render() {
     return (
-      <div className="container fadeIn animated">
-        <h1>Star Wars API & React Redux</h1>
-        <nav>
-          <ul className="nav nav-pills">
-            <li><Link to="/">People</Link></li>
-            <li><Link to="/films">Films</Link></li>
-          </ul>
-        </nav>
-        {this.props.children}
+      <div className="application-layout" style={this.getStyles()}>
+        <div className="main-container">
+          <div className="left-sidebar-container">
+            <Sidebar/>
+          </div>
+          <div className="content-container">
+            <ContentArea>
+              <h3>Star Wars API & React Redux</h3>
+              {this.props.children}
+            </ContentArea>
+          </div>
+        </div>
       </div>
     );
   }
@@ -20,5 +32,5 @@ export default class ApplicationLayout extends React.Component {
 
 ApplicationLayout.displayName = 'ApplicationLayout';
 ApplicationLayout.propTypes = {
-  children: React.PropTypes.array
+  children: React.PropTypes.object
 };

@@ -1,0 +1,23 @@
+.application-layout {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+}
+
+.left-sidebar-container {
+  width: 250px;
+  // margin-left: -250px;
+  background: darken(#fff, 5%);
+  border-right: 1px solid darken(#fff, 7%);
+}
+
+.content-container {
+
+}
+
