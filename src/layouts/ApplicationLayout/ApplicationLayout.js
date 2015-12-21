@@ -15,7 +15,7 @@ export default class ApplicationLayout extends React.Component {
     return (
       <div className="application-layout" style={this.getStyles()}>
         <div className="main-container">
-          <div className="left-sidebar-container">
+          <div className="left-sidebar-container open">
             <Sidebar/>
           </div>
           <div className="content-container">
