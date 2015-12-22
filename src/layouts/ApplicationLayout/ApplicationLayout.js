@@ -1,36 +1,60 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import ContentArea from './ContentArea';
+import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
 import './application-layout.scss';
 
-export default class ApplicationLayout extends React.Component {
-  getStyles() {
-    if (typeof window === 'object') {
-      return { minHeight: window.innerHeight };
-    }
-    return {};
+const mapStateToProps = () => ({});
+const actionCreators = { pushState };
+
+export class ApplicationLayout extends React.Component {
+  static propTypes = {
+    pushState: React.PropTypes.func,
+    children: React.PropTypes.object
   }
+
+  getSelectOptions() {
+    return [
+      { label: 'Films', value: '/films' },
+      { label: 'People', value: '/' }
+    ];
+  }
+
+  selectChangeHandler(value) {
+    this.props.pushState(null, value);
+  }
+
 
   render() {
     return (
-      <div className="application-layout" style={this.getStyles()}>
-        <div className="main-container">
-          <div className="left-sidebar-container open">
-            <Sidebar/>
-          </div>
-          <div className="content-container">
-            <ContentArea>
-              <h3>Star Wars API & React Redux</h3>
-              {this.props.children}
-            </ContentArea>
-          </div>
+      <div>
+        <div className="left-sidebar">
+          <ul>
+            <li>
+              <a href="#">People</a>
+            </li>
+            <li>
+              <a href="#">Films</a>
+            </li>
+            <li>
+              <a href="#">Planets</a>
+            </li>
+            <li>
+              <a href="#">Starships</a>
+            </li>
+            <li>
+              <a href="#">Species</a>
+            </li>
+            <li>
+              <a href="#">Vehicles</a>
+            </li>
+          </ul>
+        </div>
+        <div className="main-content">
+          {this.props.children}
         </div>
       </div>
     );
   }
 }
 
-ApplicationLayout.displayName = 'ApplicationLayout';
-ApplicationLayout.propTypes = {
-  children: React.PropTypes.object
-};
+export default connect(mapStateToProps, actionCreators)(ApplicationLayout);
