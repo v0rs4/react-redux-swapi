@@ -1,0 +1,12 @@
+
+.swi-sw-logo:before { content: '\e800'; } /* '' */
+.swi-x-wing:before { content: '\e801'; } /* '' */
+.swi-space-shuttle:before { content: '\e802'; } /* '' */
+.swi-globe:before { content: '\e803'; } /* '' */
+.swi-rocket:before { content: '\e804'; } /* '' */
+.swi-vehicle:before { content: '\e805'; } /* '' */
+.swi-rebel:before { content: '\e806'; } /* '' */
+.swi-empire:before { content: '\e807'; } /* '' */
+.swi-people:before { content: '\e808'; } /* '' */
+.swi-tie-fighter:before { content: '\e809'; } /* '' */
+.swi-video:before { content: '\e80a'; } /* '' */
