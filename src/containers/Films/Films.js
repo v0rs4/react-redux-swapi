@@ -4,7 +4,7 @@ import { fetchFilms } from 'redux/bundles/films';
 
 const mapStateToProps = (state) => ({
   isFetching: state.films.isFetching,
-  films: state.films.apiResponse.results
+  films: state.films.items
 });
 
 const actions = { fetchFilms };
