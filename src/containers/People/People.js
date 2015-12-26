@@ -5,13 +5,12 @@ import PeopleTable from 'components/PeopleTable/PeopleTable';
 
 const mapStateToProps = (state) => ({
   isFetching: state.people.isFetching,
-  isFetched: state.people.isFetched,
-  nextUrl: state.people.apiResponse.next,
-  prevUrl: state.people.apiResponse.previous,
-  people: state.people.apiResponse.results
+  nextUrl: state.people.nextUrl,
+  prevUrl: state.people.previousUrl,
+  people: state.people.items
 });
 
-const actions = { fetchPeople };
+const actionCreators = { fetchPeople };
 
 export class People extends React.Component {
   componentDidMount() {
@@ -33,9 +32,9 @@ export class People extends React.Component {
   _renderTable() {
     return (
       <PeopleTable
-        nextUrl={this.props.nextUrl}
         prevUrl={this.props.prevUrl}
-        changePage={this.changePage}
+        nextUrl={this.props.nextUrl}
+        changePage={::this.changePage}
         people={this.getPeople()} />
     );
   }
@@ -50,10 +49,9 @@ export class People extends React.Component {
 People.propTypes = {
   fetchPeople: React.PropTypes.func,
   isFetching: React.PropTypes.bool,
-  isFetched: React.PropTypes.bool,
   nextUrl: React.PropTypes.string,
   prevUrl: React.PropTypes.string,
   people: React.PropTypes.array
 };
 
-export default connect(mapStateToProps, actions)(People);
+export default connect(mapStateToProps, actionCreators)(People);
